@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/home/zkilburn/.local/share/virtualenvs/mocourtscraper-MpGh0vGY/bin/python",
+    "terminal.integrated.env.linux": {
+        "PYTHONPATH": "/home/zkilburn/projects/consulting/mocourtscraper"
+    } 
+}
