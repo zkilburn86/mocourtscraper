@@ -1,5 +1,6 @@
 from mocourtscraper.utilities import chromedriver,case_spider_helper
 from mocourtscraper.constants import search_options, navigation
+from mocourtscraper.scripts import parse
 from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,18 +8,11 @@ from bs4 import BeautifulSoup
 import time
 import pprint
 from urllib.parse import urlencode, quote
+import pandas as pd
 
-params = {
-    'location_description': 'All',
-    'case_status': 'All',
-    'start_date': '01/21/2021',
-    'case_type': 'Criminal',
-    'county_description': 'All'
-}
-params['court_description'] = search_options.COURT_DESCRIPTIONS[5]
+content = open('mocourtscraper/utilities/cases.html')
+#content = open('/home/zkilburn/projects/consulting/mocourtscraper/cases-no-results.html')
+soup = BeautifulSoup(content, features='lxml')
 
-print(case_spider_helper.build_url(params))
-
-params.pop('court_description')
-
-print(case_spider_helper.build_url(params))
+df = parse.get_results(soup)
+print(df.head())
