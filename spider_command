@@ -1,0 +1,7 @@
+scrapy crawl cases -O results.csv \
+-a court_description=6th\ Judicial\ Circuit\ \(Platte\ County\) \
+-a county_description=All \
+-a location_description=All \
+-a case_status=All \
+-a start_date=02/16/2021 \
+-a case_type=All

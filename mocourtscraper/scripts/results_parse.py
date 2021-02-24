@@ -11,22 +11,18 @@ class ResultsTableParseError(Exception):
 class TableRowParseError(Exception):
     pass
 
-def get_results(soup):
-    if has_results(soup):
-        result_counts = get_pagination(soup)
-        df = build_frame(soup)
-        df = add_results_to_frame(soup, df)
-    else:
-        raise NoResultsError('No cases found')
-    return df
-    
-
 def has_results(soup):
     message_line = soup.find('td', 'messageLine')
     if message_line is None:
         return True
     else:
         return False
+
+def get_results(soup):
+    df = build_frame(soup)
+    df = add_results_to_frame(soup, df)
+    
+    return df
 
 def get_pagination(soup):
     result_counts = []
@@ -83,5 +79,3 @@ def build_row(row, headers):
         result[col] = row[indexer].text.strip()
         indexer += 1
     return result
-
-#def handle_pages()

@@ -1,8 +1,9 @@
 import scrapy
-from mocourtscraper.scripts import parse
+from datetime import datetime
+from bs4 import BeautifulSoup
+from mocourtscraper.scripts.results_parse import has_results, get_results, get_pagination, NoResultsError
 from mocourtscraper.constants import search_options
 from mocourtscraper.utilities import case_spider_helper
-from datetime import datetime
 
 class CaseSpider(scrapy.Spider):
     name = "cases"
@@ -17,6 +18,8 @@ class CaseSpider(scrapy.Spider):
         'case_type': 'All'
     }
 
+    results_output = None
+
     def __init__(self, **kwargs):
         for arg in kwargs.keys():
             self.params[arg] = kwargs.get(arg)
@@ -30,8 +33,24 @@ class CaseSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
-        page = response.url.split("/")[-2]
-        filename = f'{page}-no-results.html'
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log(f'Saved file {filename}')
+        content = response.body
+        soup = BeautifulSoup(content, features='lxml')
+
+        if has_results(soup):
+            result_counts = get_pagination(soup)
+            next_result = case_spider_helper.get_next_result(result_counts)
+            last_page = case_spider_helper.is_last_page(result_counts)
+
+            if self.results_output is None:
+                self.results_output = get_results(soup)
+            else:
+                self.results_output = self.results_output.append(get_results(soup), ignore_index=True)
+
+            if not last_page:
+                url = case_spider_helper.build_url(self.params) + '&inputVO.startingRecord=' + str(next_result)
+                yield scrapy.Request(url=url, callback=self.parse)
+        else:
+            raise NoResultsError('No cases found')
+
+        if last_page:
+            self.results_output.to_csv('results.csv')

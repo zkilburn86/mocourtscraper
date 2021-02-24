@@ -16,6 +16,18 @@ def build_url(kwargs):
 
     return url
 
+def is_last_page(result_counts):
+    last_result_on_page = result_counts[1]
+    last_result = result_counts[2]
+
+    if last_result_on_page == last_result:
+        return True
+    else:
+        return False
+
+def get_next_result(result_counts):
+    return result_counts[1] + 1
+
 def _handle_court(court, PARAMS):
     court_id = search_options.COURT_IDS.get(court)
     if court_id is not None:

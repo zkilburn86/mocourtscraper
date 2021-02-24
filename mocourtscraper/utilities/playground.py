@@ -1,6 +1,6 @@
 from mocourtscraper.utilities import chromedriver,case_spider_helper
 from mocourtscraper.constants import search_options, navigation
-from mocourtscraper.scripts import parse
+from mocourtscraper.scripts import results_parse
 from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,5 +14,5 @@ content = open('mocourtscraper/utilities/cases.html')
 #content = open('/home/zkilburn/projects/consulting/mocourtscraper/cases-no-results.html')
 soup = BeautifulSoup(content, features='lxml')
 
-df = parse.get_results(soup)
+df = results_parse.get_results(soup)
 print(df.head())
