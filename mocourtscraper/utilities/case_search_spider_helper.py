@@ -28,6 +28,12 @@ def is_last_page(result_counts):
 def get_next_result(result_counts):
     return result_counts[1] + 1
 
+def build_case_url(case_number, location):
+    court_param = 'inputVO.courtId=' + navigation.LOCATION_TO_COURT_ID[location]
+    case_param = 'inputVO.caseNumber=' + case_number
+    url = navigation.CASE_URL + navigation.CASE_PAGES[0] + '?' + case_param + '&' + court_param
+    return url
+
 def _handle_court(court, PARAMS):
     court_id = search_options.COURT_IDS.get(court)
     if court_id is not None:

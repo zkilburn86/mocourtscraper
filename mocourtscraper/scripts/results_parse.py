@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import pandas as pd
+from mocourtscraper.utilities import case_search_spider_helper
 
 
 class NoResultsError(Exception):
@@ -38,7 +39,8 @@ def build_frame(soup):
     headers = []
     table_headers = soup.find_all('td','header')
     for label in table_headers:
-        headers.append(label.text.strip())
+        header = label.text.replace('\xa0', '_')
+        headers.append(header)
 
     df = pd.DataFrame(columns=headers)
 
@@ -79,3 +81,13 @@ def build_row(row, headers):
         result[col] = row[indexer].text.strip()
         indexer += 1
     return result
+
+def post_process(df):
+    case_to_loc = pd.Series(df.Location.values,index=df.Case_Number).to_dict()
+    case_urls = []
+    for case_number in case_to_loc.keys():
+        case_urls.append(
+            case_search_spider_helper.build_case_url(case_number, case_to_loc[case_number])
+        )
+    df['Case URL'] = case_urls
+    return df

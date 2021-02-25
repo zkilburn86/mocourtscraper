@@ -1,4 +1,4 @@
-from mocourtscraper.utilities import chromedriver,case_spider_helper
+from mocourtscraper.utilities import chromedriver,case_search_spider_helper
 from mocourtscraper.constants import search_options, navigation
 from mocourtscraper.scripts import results_parse
 from selenium.webdriver.support.ui import Select, WebDriverWait
@@ -9,10 +9,31 @@ import time
 import pprint
 from urllib.parse import urlencode, quote
 import pandas as pd
+import json
 
-content = open('mocourtscraper/utilities/cases.html')
-#content = open('/home/zkilburn/projects/consulting/mocourtscraper/cases-no-results.html')
+""" driver = chromedriver.driver()
+driver.get('https://www.courts.mo.gov/casenet/cases/header.do?inputVO.caseNumber=200833276&inputVO.courtId=SMPDB0001_CT06')
+content = driver.page_source
 soup = BeautifulSoup(content, features='lxml')
 
-df = results_parse.get_results(soup)
-print(df.head())
+detail_labels = soup.find_all('td', 'detailLabels')
+detail_data = soup.find_all('td', 'detailData')
+indexer = 0
+header_result = {}
+for label in detail_labels:
+    if label.text.strip() != '':
+        header_result[label.text.strip()] = detail_data[indexer].text.strip()
+    indexer += 1
+
+json_str = json.dumps(header_result)
+print(json_str) """
+
+
+content = open('/home/zkilburn/projects/consulting/mocourtscraper/mocourtscraper/utilities/cases.html')
+soup = BeautifulSoup(content, features='lxml')
+headers = []
+table_headers = soup.find_all('td','header')
+for label in table_headers:
+    header = label.text.replace('\xa0', '_')
+    headers.append(header)
+print(headers)
