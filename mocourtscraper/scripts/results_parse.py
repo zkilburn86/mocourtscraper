@@ -89,5 +89,5 @@ def post_process(df):
         case_urls.append(
             case_search_spider_helper.build_case_url(case_number, case_to_loc[case_number])
         )
-    df['Case URL'] = case_urls
+    df['Case_URL'] = case_urls
     return df

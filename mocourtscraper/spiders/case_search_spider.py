@@ -20,6 +20,8 @@ class CaseSearchSpider(scrapy.Spider):
 
     results_output = None
 
+    file_name = 'run-' + str(int(datetime.timestamp(datetime.now()))) + '.csv'
+
     def __init__(self, **kwargs):
         for arg in kwargs.keys():
             self.params[arg] = kwargs.get(arg)
@@ -54,4 +56,4 @@ class CaseSearchSpider(scrapy.Spider):
 
         if last_page:
             self.results_output = post_process(self.results_output)
-            self.results_output.to_csv('results.csv')
+            yield self.results_output.to_csv('runs/' + self.file_name, index=False)

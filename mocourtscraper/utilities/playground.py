@@ -28,12 +28,3 @@ for label in detail_labels:
 json_str = json.dumps(header_result)
 print(json_str) """
 
-
-content = open('/home/zkilburn/projects/consulting/mocourtscraper/mocourtscraper/utilities/cases.html')
-soup = BeautifulSoup(content, features='lxml')
-headers = []
-table_headers = soup.find_all('td','header')
-for label in table_headers:
-    header = label.text.replace('\xa0', '_')
-    headers.append(header)
-print(headers)

@@ -1,4 +1,4 @@
-scrapy crawl cases_search -O results.csv \
+scrapy crawl cases_search \
 -a court_description=6th\ Judicial\ Circuit\ \(Platte\ County\) \
 -a county_description=All \
 -a location_description=All \
@@ -7,3 +7,5 @@ scrapy crawl cases_search -O results.csv \
 -a case_type=All
 
 
+scrapy crawl cases -O output.json \
+-a dir=runs
