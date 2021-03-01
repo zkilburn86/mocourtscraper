@@ -19,7 +19,7 @@ def parse_header(response):
     return case_header
 
 def parse_parties(body):
-    parties_result = {}
+    parties_result = []
     soup = BeautifulSoup(body, features='lxml')
 
     parties_result = _get_case_parties(soup)
@@ -30,7 +30,20 @@ def parse_parties(body):
     return case_parties
 
 def parse_charges(body):
-    charges_result = {}
+    charges_result = []
+    soup = BeautifulSoup(body, features='lxml')
+
+    charge_labels = _get_charge_labels(soup)
+    charge_data = _get_charge_data(soup)
+
+    charges = {}
+    position = 0
+    if len(charge_labels) == len(charge_data):
+        for label in charge_labels:
+            charges[label] = charge_data[position]
+            position += 1
+    charges_result.append(charges)
+
     case_charges = {'charges': charges_result}
     return case_charges
 
@@ -88,3 +101,29 @@ def _append_address(parties, address_detail, position):
         }
         parties[position].update(address_dict)
     return parties
+
+def _get_charge_labels(soup):
+    charge_labels = []
+    detail_labels = soup.find_all('td', 'detailLabels')
+    for label in detail_labels:
+        label_text = label.text.strip().replace('\xa0','_')
+        if label_text != '':
+            label_text = label_text.replace(':','').replace(' ', '_').lower()
+            charge_labels.append(label_text)
+    return charge_labels
+
+def _get_charge_data(soup):
+    charge_data = []
+    detail_data = soup.find_all('td', 'detailData')
+    for item in detail_data:
+        item_text = item.text.strip().replace('\xa0',' ')
+        if item_text != '':
+            item_text = _replace_breaks(item_text)
+            charge_data.append(item_text)
+    return charge_data
+
+def _replace_breaks(text):
+    text = text.replace('\n','')
+    text = text.replace('\t','')
+    text = text.replace('\r','')
+    return text

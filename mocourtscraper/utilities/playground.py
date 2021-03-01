@@ -4,32 +4,37 @@ import json
 import requests 
 import re
 
-url = 'https://www.courts.mo.gov/casenet/cases/parties.do?inputVO.caseNumber=703480865&inputVO.courtId=SMPDB0005_CT42'
+def _replace_breaks(text):
+    text = text.replace('\n','')
+    text = text.replace('\t','')
+    text = text.replace('\r','')
+    return text
+
+url = 'https://www.courts.mo.gov/casenet/cases/charges.do?inputVO.caseNumber=703480865&inputVO.courtId=SMPDB0005_CT42'
 req = requests.get(url)
 soup = BeautifulSoup(req.content, features='lxml')
 
-num_of_parties = 0
-detail_separators = soup.find_all('td', 'detailSeperator')
-for detail in detail_separators:
-    cell_text = detail.text.strip()
-    if cell_text != '' and 'represented by' not in cell_text:
-        party = ' '.join(cell_text.split())
-        party_details = party.split(' , ')
-        num_of_parties += 1
-        if len(party_details) == 3:
-            print('First Name: ', party_details[1], ' | Last Name: ', party_details[0], ' | Role: ', party_details[2])
-        if len(party_details) == 2:
-            print('Party: ', party_details[0], ' | Role: ', party_details[1])
+charge_labels = []
+detail_labels = soup.find_all('td', 'detailLabels')
+for label in detail_labels:
+    label_text = label.text.strip().replace('\xa0','_')
+    if label_text != '':
+        label_text = label_text.replace(':','').replace(' ', '_').lower()
+        charge_labels.append(label_text)
 
-party_addresses = []
+charge_data = []
 detail_data = soup.find_all('td', 'detailData')
-for detail in detail_data:
-    cell_text = detail.text.strip()
-    if cell_text != '':
-        party_addresses.append(' '.join(cell_text.split()))
+for item in detail_data:
+    item_text = item.text.strip().replace('\xa0',' ')
+    if item_text != '':
+        item_text = _replace_breaks(item_text)
+        charge_data.append(item_text)
 
-indexer = 0
-if len(party_addresses) == num_of_parties:
-    for address in party_addresses:
-        address_detail = address.split(' Year of Birth: ')
-        
+charges = {}
+position = 0
+if len(charge_labels) == len(charge_data):
+    for label in charge_labels:
+        charges[label] = charge_data[position]
+        position += 1
+
+print(charges)
