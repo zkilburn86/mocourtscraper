@@ -3,12 +3,16 @@ import pandas as pd
 import os
 import re
 from mocourtscraper.utilities import case_spider_helper
+from mocourtscraper.scripts.case_parse import parse_header
 
 
-PATT = "(?<=caseNumber=)(.*)(?=&)"
+CASE_NUM_PATT = "(?<=caseNumber=)(.*)(?=&)"
 
 class CaseSpider(scrapy.Spider):
     name = "cases"
+
+    # Default case details to parse
+    paths = ['parties.do','charges.do']
 
     def start_requests(self):
         cases_dir = getattr(self, 'dir', None)
@@ -23,10 +27,15 @@ class CaseSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
-        case_number = re.findall(PATT, response.url)[0]
-        case_result = {
-            'case_number': case_number
-        }
-        parsed_case = case_spider_helper.parse_case(response.body)
-        case_result.update(parsed_case)
+        details_result = []
+
+        case_number = re.findall(CASE_NUM_PATT, response.url)[0]
+        case_result = {'case_number': case_number}
+        
+        header_result = parse_header(response)
+        details_result.append(header_result)
+
+        details_result = case_spider_helper.get_case_details(response.url, self.paths, details_result)
+        
+        case_result['details'] = details_result
         yield case_result

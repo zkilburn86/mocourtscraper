@@ -33,7 +33,7 @@ CASE_SEARCH_HANDLER = {
 
 CASE_URL = 'https://www.courts.mo.gov/casenet/cases/'
 
-CASE_PAGES = [
+CASE_PATHS = [
     'header.do',
     'parties.do',
     'searchDockets.do',
@@ -44,6 +44,11 @@ CASE_PAGES = [
     'judgements.do',
     'garnishment.do'
 ]
+
+PATH_PARSERS = {
+    'parties.do': 'parse_parties',
+    'charges.do': 'parse_charges'
+}
 
 LOCATION_TO_COURT_ID = {
     'Novinger Municipal': 'SMPDB0004_CT02', 'Kirksville Municipal Court': 'SMPDB0004_CT02',

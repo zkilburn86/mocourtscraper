@@ -31,7 +31,7 @@ def get_next_result(result_counts):
 def build_case_url(case_number, location):
     court_param = 'inputVO.courtId=' + navigation.LOCATION_TO_COURT_ID[location]
     case_param = 'inputVO.caseNumber=' + case_number
-    url = navigation.CASE_URL + navigation.CASE_PAGES[0] + '?' + case_param + '&' + court_param
+    url = navigation.CASE_URL + navigation.CASE_PATHS[0] + '?' + case_param + '&' + court_param
     return url
 
 def _handle_court(court, PARAMS):
