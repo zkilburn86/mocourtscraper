@@ -1,10 +1,13 @@
 import scrapy
+from scraper_api import ScraperAPIClient
 from datetime import datetime
 from bs4 import BeautifulSoup
 from mocourtscraper.scripts.results_parse import has_results, get_results, get_pagination, NoResultsError, post_process
 from mocourtscraper.constants import search_options
 from mocourtscraper.utilities import case_search_spider_helper
+from mocourtscraper.creds import SCRAPER_API_KEY
 
+CLIENT = ScraperAPIClient(SCRAPER_API_KEY)
 class CaseSearchSpider(scrapy.Spider):
     name = "cases_search"
 
@@ -32,6 +35,7 @@ class CaseSearchSpider(scrapy.Spider):
 
     def start_requests(self):
         for url in self.start_urls:
+            url = CLIENT.scrapyGet(url=url)
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
@@ -50,6 +54,7 @@ class CaseSearchSpider(scrapy.Spider):
 
             if not last_page:
                 url = case_search_spider_helper.build_url(self.params) + '&inputVO.startingRecord=' + str(next_result)
+                url = CLIENT.scrapyGet(url=url)
                 yield scrapy.Request(url=url, callback=self.parse)
         else:
             raise NoResultsError('No cases found')
