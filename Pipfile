@@ -11,6 +11,7 @@ pandas = "*"
 scrapy = "*"
 bs4 = "*"
 scraperapi-sdk = "*"
+shub = "*"
 
 [dev-packages]
 pylint = "*"
