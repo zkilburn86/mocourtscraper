@@ -47,7 +47,8 @@ CASE_PATHS = [
 
 PATH_PARSERS = {
     'parties.do': 'parse_parties',
-    'charges.do': 'parse_charges'
+    'charges.do': 'parse_charges',
+    'header.do': 'parse_header'
 }
 
 LOCATION_TO_COURT_ID = {
@@ -282,14 +283,14 @@ LOCATION_TO_COURT_ID = {
     'Dallas': 'SMPDB0005_CT30', 'Daviess': 'SMPDB0005_CT43', 'DeKalb': 'SMPDB0005_CT43', 'Dent': 'SMPDB0005_CT42', 'Douglas': 'SMPDB0005_CT44', 'Dunklin': 'SMPDB0001_CT35',
     'Franklin': 'SMPDB0004_CT20', 'Gasconade': 'SMPDB0004_CT20', 'Gentry': 'SMPDB0001_CT04', 'Greene': 'CT31', 'Grundy': 'SMPDB0001_CT03', 'Harrison': 'SMPDB0001_CT03',
     'Henry': 'SMPDB0005_CT27', 'Hickory': 'SMPDB0005_CT30', 'Holt': 'SMPDB0001_CT04', 'Howard': 'SMPDB0001_CT14', 'Howell': 'SMPDB0005_CT37', 'Iron': 'SMPDB0005_CT42',
-    'Jackson': 'CT16', 'Jasper': 'SMPDB0001_CT29', 'Jefferson': 'CT23', 'Johnson': 'CT17', 'Knox': 'SMPDB0004_CT02', 'Laclede': 'SMPDB0004_CT26', 'Lafayette': 'SMPDB0001_CT15',
-    'Lewis': 'SMPDB0004_CT02', 'Lincoln': 'SMPDB0005_CT45', 'Linn': 'SMPDB0001_CT09', 'Livingston': 'SMPDB0005_CT43', 'Macon': 'SMPDB0004_CT41',
-    'Madison': 'SMPDB0005_CT24', 'Maries County': 'SMPDB0005_CT25', 'Marion': 'SMPDB0004_CT10', 'Mercer': 'SMPDB0001_CT03',
+    'Jackson': 'CT16', 'Jasper': 'SMPDB0001_CT29', 'Jasper County - Joplin': 'SMPDB0001_CT29', 'Jasper County - Carthage': 'SMPDB0001_CT29', 'Jefferson': 'CT23', 'Johnson': 'CT17', 'Knox': 'SMPDB0004_CT02', 
+    'Laclede': 'SMPDB0004_CT26', 'Lafayette': 'SMPDB0001_CT15', 'Lewis': 'SMPDB0004_CT02', 'Lincoln': 'SMPDB0005_CT45', 'Linn': 'SMPDB0001_CT09', 'Livingston': 'SMPDB0005_CT43', 
+    'Macon': 'SMPDB0004_CT41', 'Madison': 'SMPDB0005_CT24', 'Maries County': 'SMPDB0005_CT25', 'Marion': 'SMPDB0004_CT10', 'Mercer': 'SMPDB0001_CT03',
     'Miller': 'SMPDB0004_CT26', 'Mississippi': 'SMPDB0005_CT33', 'Moniteau': 'SMPDB0004_CT26', 'Monroe': 'SMPDB0004_CT10', 'Montgomery': 'CT12', 
     'New Madrid': 'SMPDB0005_CT34', 'Nodaway': 'SMPDB0001_CT04', 'Oregon': 'SMPDB0005_CT37', 'Osage': 'SMPDB0004_CT20', 'Ozark': 'SMPDB0005_CT44',
     'Pemiscot': 'SMPDB0005_CT34', 'Perry': 'SMPDB0001_CT32', 'Pettis': 'CT18', 'Phelps County': 'SMPDB0005_CT25', 'Pike': 'SMPDB0005_CT45', 'Platte': 'SMPDB0001_CT06',
-    'Polk': 'SMPDB0005_CT30', 'Pulaski': 'SMPDB0005_CT25', 'Putnam': 'SMPDB0001_CT03', 'Ralls': 'SMPDB0004_CT10', 'Randolph': 'SMPDB0001_CT14', 'Ray': 'CT08',
-    'Reynolds': 'SMPDB0005_CT42', 'Ripley': 'SMPDB0004_CT36', 'Saline': 'SMPDB0001_CT15', 'Schuyler': 'SMPDB0004_CT01', 'Scotland': 'SMPDB0004_CT01', 'Scott': 'SMPDB0005_CT33',
+    'Polk': 'SMPDB0005_CT30', 'Pulaski': 'SMPDB0005_CT25', 'Putnam': 'SMPDB0001_CT03', 'Ralls': 'SMPDB0004_CT10', 'Randolph': 'SMPDB0001_CT14', 'Ray': 'CT08', 'Ray Circuit Division': 'CT08',
+    'Carroll Circuit Division': 'CT08', 'Reynolds': 'SMPDB0005_CT42', 'Ripley': 'SMPDB0004_CT36', 'Saline': 'SMPDB0001_CT15', 'Schuyler': 'SMPDB0004_CT01', 'Scotland': 'SMPDB0004_CT01', 'Scott': 'SMPDB0005_CT33',
     'Shannon': 'SMPDB0005_CT37', 'Shelby': 'SMPDB0004_CT41', 'St. Charles': 'CT11', 'St. Clair': 'SMPDB0005_CT27', 'St. Francois': 'SMPDB0005_CT24', 'St. Louis County': 'CT21',
     'Ste. Genevieve': 'SMPDB0005_CT24', 'Stoddard': 'SMPDB0001_CT35', 'Sulivan': 'SMPDB0001_CT09', 'Taney': 'CT46', 'Texas': 'SMPDB0005_CT25', 'The City of St. Louis': 'CT22',
     'Vernon': 'SMPDB0004_CT28', 'Warren': 'CT12', 'Washington': 'SMPDB0005_CT24', 'Wayne': 'SMPDB0005_CT42', 'Webster': 'SMPDB0005_CT30', 'Worth': 'SMPDB0001_CT04', 'Wright': 'SMPDB0005_CT44'

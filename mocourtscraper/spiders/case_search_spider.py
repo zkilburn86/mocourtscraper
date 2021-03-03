@@ -2,16 +2,21 @@ import scrapy
 from scraper_api import ScraperAPIClient
 from datetime import datetime
 from bs4 import BeautifulSoup
-from mocourtscraper.scripts.results_parse import has_results, get_results, get_pagination, NoResultsError, post_process
-from mocourtscraper.constants import search_options
+from mocourtscraper.scripts.results_parse import has_results, get_pagination, NoResultsError, get_case_numbers
+from mocourtscraper.constants import search_options, navigation
 from mocourtscraper.utilities import case_search_spider_helper
+from mocourtscraper.scripts.case_parse import parse_header, parse_parties, parse_charges
 from mocourtscraper.creds import SCRAPER_API_KEY
+import re
 
+
+CASE_NUM_PATT = "(?<=caseNumber=)(.*)(?=&)"
+PATH_PATT = "(?<=cases\/)(.*)(?=\?)"
 CLIENT = ScraperAPIClient(SCRAPER_API_KEY)
 class CaseSearchSpider(scrapy.Spider):
     name = "cases_search"
 
-    #Setting defaults
+    #Setting default search parameters
     params = {
         'court_description': search_options.COURT_DESCRIPTIONS[0],
         'county_description': 'All',
@@ -21,9 +26,12 @@ class CaseSearchSpider(scrapy.Spider):
         'case_type': 'All'
     }
 
-    results_output = None
+    # Default case details to parse
+    paths = ['parties.do','charges.do']
 
-    file_name = 'run-' + str(int(datetime.timestamp(datetime.now()))) + '.csv'
+    results_output = []
+
+    url_map = {}
 
     def __init__(self, **kwargs):
         for arg in kwargs.keys():
@@ -47,10 +55,7 @@ class CaseSearchSpider(scrapy.Spider):
             next_result = case_search_spider_helper.get_next_result(result_counts)
             last_page = case_search_spider_helper.is_last_page(result_counts)
 
-            if self.results_output is None:
-                self.results_output = get_results(soup)
-            else:
-                self.results_output = self.results_output.append(get_results(soup), ignore_index=True)
+            self.results_output.extend(get_case_numbers(soup))
 
             if not last_page:
                 url = case_search_spider_helper.build_url(self.params) + '&inputVO.startingRecord=' + str(next_result)
@@ -59,6 +64,26 @@ class CaseSearchSpider(scrapy.Spider):
         else:
             raise NoResultsError('No cases found')
 
-        if last_page:
-            self.results_output = post_process(self.results_output)
-            yield self.results_output.to_csv('runs/' + self.file_name, index=False)
+        if last_page:           
+            for case in self.results_output:
+                case_path = re.findall(PATH_PATT, case['url'])[0]
+                self.url_map[case['url']] = case_path
+                for path in self.paths:
+                    path_url = case['url'].replace(case_path, path)
+                    self.url_map[path_url] = path
+            
+            for url in self.url_map.keys():
+                case_number = re.findall(CASE_NUM_PATT, url)[0]
+                path = self.url_map.get(url)
+                url = CLIENT.scrapyGet(url=url)
+                yield scrapy.Request(url=url, callback=self.parse_paths, cb_kwargs=dict(case_number=case_number, path=path))
+
+    def parse_paths(self, response, case_number, path):
+        case_details_result = {'case_number': case_number}
+
+        path_parse_function = navigation.PATH_PARSERS.get(path)
+        path_result = globals()[path_parse_function](response.body)
+
+        case_details_result.update(path_result)
+        
+        yield case_details_result

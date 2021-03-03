@@ -25,6 +25,21 @@ def get_results(soup):
     
     return df
 
+def get_case_numbers(soup):
+    df = build_frame(soup)
+    df = add_results_to_frame(soup, df)
+    df = post_process(df)
+
+    results_output = []
+    case_to_url = pd.Series(df.Case_URL.values,index=df.Case_Number).to_dict()
+    for case in case_to_url.keys():
+        results_output.append(
+            {'case_number': case, 'url': case_to_url.get(case)}
+        )
+    
+    return results_output
+        
+
 def get_pagination(soup):
     result_counts = []
     result_description = soup.find('td', 'resultDescription').find_all('b')

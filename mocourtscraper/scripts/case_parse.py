@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 
-def parse_header(response):
-    soup = BeautifulSoup(response.body, features='lxml')
+def parse_header(body):
+    soup = BeautifulSoup(body, features='lxml')
 
     detail_labels = soup.find_all('td', 'detailLabels')
     detail_data = soup.find_all('td', 'detailData')

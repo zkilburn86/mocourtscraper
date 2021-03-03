@@ -1,11 +1,7 @@
-scrapy crawl cases_search \
--a court_description=30th\ Judicial\ Circuit\ \(Benton,\ Dallas,\ Hickory,\ Polk\ \&\ Webster\ Counties\) \
+scrapy crawl cases_search -O new_cases_search.json \
+-a court_description=36th\ Judicial\ Circuit\ \(Butler\ \&\ Ripley\ Counties\) \
 -a county_description=All \
 -a location_description=All \
 -a case_status=All \
--a start_date=02/17/2021 \
+-a start_date=03/02/2021 \
 -a case_type=Criminal
-
-
-scrapy crawl cases -O output.json \
--a dir=runs
