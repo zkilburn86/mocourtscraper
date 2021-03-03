@@ -1,5 +1,4 @@
 import scrapy
-from scraper_api import ScraperAPIClient
 from datetime import datetime
 from bs4 import BeautifulSoup
 from mocourtscraper.scripts.results_parse import has_results, get_pagination, NoResultsError, get_case_numbers
@@ -12,7 +11,7 @@ import re
 
 CASE_NUM_PATT = "(?<=caseNumber=)(.*)(?=&)"
 PATH_PATT = "(?<=cases\/)(.*)(?=\?)"
-CLIENT = ScraperAPIClient(SCRAPER_API_KEY)
+
 class CaseSearchSpider(scrapy.Spider):
     name = "cases_search"
 
@@ -43,7 +42,6 @@ class CaseSearchSpider(scrapy.Spider):
 
     def start_requests(self):
         for url in self.start_urls:
-            url = CLIENT.scrapyGet(url=url)
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
@@ -59,7 +57,6 @@ class CaseSearchSpider(scrapy.Spider):
 
             if not last_page:
                 url = case_search_spider_helper.build_url(self.params) + '&inputVO.startingRecord=' + str(next_result)
-                url = CLIENT.scrapyGet(url=url)
                 yield scrapy.Request(url=url, callback=self.parse)
         else:
             raise NoResultsError('No cases found')
@@ -75,7 +72,6 @@ class CaseSearchSpider(scrapy.Spider):
             for url in self.url_map.keys():
                 case_number = re.findall(CASE_NUM_PATT, url)[0]
                 path = self.url_map.get(url)
-                url = CLIENT.scrapyGet(url=url)
                 yield scrapy.Request(url=url, callback=self.parse_paths, cb_kwargs=dict(case_number=case_number, path=path))
 
     def parse_paths(self, response, case_number, path):
