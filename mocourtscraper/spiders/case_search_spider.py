@@ -32,15 +32,21 @@ class CaseSearchSpider(scrapy.Spider):
 
     url_map = {}
 
+    # Initialize with either a court_id OR court_description
     court_id = None
 
     def __init__(self, **kwargs):
         for arg in kwargs.keys():
-            self.params[arg] = kwargs.get(arg)
+            if arg != 'court_id':
+                self.params[arg] = kwargs.get(arg)
+            if arg == 'court_id':
+                self.court_id = kwargs.get(arg)
+                self.params['court_description'] = search_options.COURT_ID_TO_NAME.get(self.court_id)
         self.start_urls = [
             case_search_spider_helper.build_url(self.params)
         ]
-        self.court_id = search_options.COURT_IDS.get(self.params['court_description'])
+        if self.court_id == None:
+            self.court_id = search_options.COURT_IDS.get(self.params['court_description'])
         super(CaseSearchSpider, self).__init__(**kwargs)
 
     def start_requests(self):

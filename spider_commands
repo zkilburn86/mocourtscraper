@@ -1,7 +1,17 @@
 scrapy crawl cases_search -O new_cases_search.json \
--a court_description=36th\ Judicial\ Circuit\ \(Butler\ \&\ Ripley\ Counties\) \
+-a court_description=1st\ Judicial\ Circuit\ \(Clark,\ Schuyler\ \&\ Scotland\ Counties\) \
 -a county_description=All \
 -a location_description=All \
 -a case_status=All \
 -a start_date=03/03/2021 \
 -a case_type=Criminal
+
+curl -u $shub_key: https://app.scrapinghub.com/api/run.json -d project=503874 -d spider=cases_search \
+-d "court_description=1st Judicial Circuit (Clark, Schuyler & Scotland Counties)" \
+-d start_date=01/01/2020 \
+-d case_type=Criminal | json_pp
+
+curl -u $shub_key: https://app.scrapinghub.com/api/jobs/list.json \
+-d project=503874 \
+-d spider=cases_search \
+-d state=running  json_pp

@@ -96,6 +96,72 @@ COURT_IDS = {
     '46th Judicial Circuit (Taney County)': 'CT46'
 }
 
+COURT_ID_TO_NAME = {
+        'CT05': '5th Judicial Circuit (Andrew & Buchanan Counties)',
+        'CT08': '8th Judicial Circuit (Carroll & Ray Counties)',
+        'CT11': '11th Judicial Circuit (St. Charles County)',
+        'CT12': '12th Judicial Circuit (Audrain, Montgomery & Warren Counties)',
+        'CT13': '13th Judicial Circuit (Boone & Callaway Counties)',
+        'CT16': '16th Judicial Circuit (Jackson County)',
+        'CT17': '17th Judicial Circuit (Cass & Johnson Counties)',
+        'CT18': '18th Judicial Circuit (Cooper & Pettis Counties)',
+        'CT21': '21st Judicial Circuit (St. Louis County)',
+        'CT22': '22nd Judicial Circuit (City of St. Louis)',
+        'CT23': '23rd Judicial Circuit (Jefferson County)',
+        'CT31': '31st Judicial Circuit (Greene County)',
+        'CT38': '38th Judicial Circuit (Christian County)',
+        'CT39': '39th Judicial Circuit (Barry, Lawrence & Stone Counties)',
+        'CT46': '46th Judicial Circuit (Taney County)',
+        'FCC': 'Fine Collection Center',
+        'OSCDB0024_SUP': 'Supreme Court',
+        'SMPDB0001_CT03': '3rd Judicial Circuit (Grundy, Harrison, Mercer & Putnam '
+                        'Counties)',
+        'SMPDB0001_CT04': '4th Judicial Circuit (Atchison, Gentry, Holt, Nodaway & '
+                        'Worth Counties)',
+        'SMPDB0001_CT06': '6th Judicial Circuit (Platte County)',
+        'SMPDB0001_CT07': '7th Judicial Circuit (Clay County)',
+        'SMPDB0001_CT09': '9th Judicial Circuit (Sullivan, Linn & Chariton Counties)',
+        'SMPDB0001_CT14': '14th Judicial Circuit (Randolph & Howard Counties)',
+        'SMPDB0001_CT15': '15th Judicial Circuit (Saline & Lafayette Counties)',
+        'SMPDB0001_CT29': '29th Judicial Circuit (Jasper County)',
+        'SMPDB0001_CT32': '32nd Judicial Circuit ( Bollinger, Cape Girardeau & Perry '
+                        'Counties)',
+        'SMPDB0001_CT35': '35th Judicial Circuit (Dunklin & Stoddard Counties)',
+        'SMPDB0001_CT40': '40th Judicial Circuit (Newton & McDonald Counties)',
+        'SMPDB0001_SAP': 'Southern Appellate',
+        'SMPDB0001_WAP': 'Western Appellate',
+        'SMPDB0004_CT01': '1st Judicial Circuit (Clark, Schuyler & Scotland Counties)',
+        'SMPDB0004_CT02': '2nd Judicial Circuit (Adair, Knox & Lewis Counties)',
+        'SMPDB0004_CT10': '10th Judicial Circuit (Marion, Monroe & Ralls Counties)',
+        'SMPDB0004_CT19': '19th Judicial Circuit (Cole County)',
+        'SMPDB0004_CT20': '20th Judicial Circuit (Franklin, Gasconade & Osage '
+                        'Counties)',
+        'SMPDB0004_CT26': '26th Judicial Circuit (Camden, Laclede, Miller, Morgan & '
+                        'Moniteau Counties)',
+        'SMPDB0004_CT28': '28th Judicial Circuit (Barton, Cedar, Dade & Vernon '
+                        'Counties)',
+        'SMPDB0004_CT36': '36th Judicial Circuit (Butler & Ripley Counties)',
+        'SMPDB0004_CT41': '41st Judicial Circuit (Macon & Shelby Counties)',
+        'SMPDB0005_CT24': '24th Judicial Circuit (Madison, Ste. Genevieve, St.  '
+                        'Francois & Washington Counties)',
+        'SMPDB0005_CT25': '25th Judicial Circuit (Maries, Phelps, Pulaski & Texas '
+                        'Counties)',
+        'SMPDB0005_CT27': '27th Judicial Circuit (Bates, Henry & St. Clair Counties)',
+        'SMPDB0005_CT30': '30th Judicial Circuit (Benton, Dallas, Hickory, Polk & '
+                        'Webster Counties)',
+        'SMPDB0005_CT33': '33rd Judicial Circuit (Mississippi & Scott Counties)',
+        'SMPDB0005_CT34': '34th Judicial Circuit (New Madrid & Pemiscot Counties)',
+        'SMPDB0005_CT37': '37th Judicial Circuit (Carter, Howell, Oregon & Shannon '
+                        'Counties)',
+        'SMPDB0005_CT42': '42nd Judicial Circuit (Dent, Crawford, Iron, Reynolds & '
+                        'Wayne Counties)',
+        'SMPDB0005_CT43': '43rd Judicial Circuit (DeKalb, Daviess, Clinton, Caldwell '
+                        '& Livingston Counties)',
+        'SMPDB0005_CT44': '44th Judicial Circuit (Douglas, Ozark & Wright Counties)',
+        'SMPDB0005_CT45': '45th Judicial Circuit (Lincoln & Pike Counties)',
+        'SMPDB0005_EAP': 'Eastern Appellate'
+}
+
 COUNTY_CODES = {
     'Clark': 'CLK', 'Scotland': 'SLD', 'Schuyler': 'SYR', 'Adair': 'ADR', 'Knox': 'KNX',
     'Lewis': 'LEW', 'Grundy': 'GRU', 'Harrison': 'HAR', 'Mercer': 'MER', 'Putnam': 'PUT', 'Atchison': 'ATN',
