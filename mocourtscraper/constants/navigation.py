@@ -52,7 +52,7 @@ PATH_PARSERS = {
 }
 
 LOCATION_TO_COURT_ID = {
-    'Novinger Municipal': 'SMPDB0004_CT02', 'Kirksville Municipal Court': 'SMPDB0004_CT02',
+    'Novinger Municipal': 'SMPDB0004_CT02', 'Kirksville Municipal Court': 'SMPDB0004_CT02', 'Kirksville Municipal': 'SMPDB0004_CT02',
     'Circuit Division': 'SMPDB0001_CT04', 'Brashear Municipal': 'SMPDB0004_CT02', 
     'Associate Division Adair': 'SMPDB0004_CT02', 'Country Club Municipal': 'CT05', 
     'Savannah Municipal': 'CT05', 'Associate Division': 'SMPDB0001_CT04', 'Tarkio Municipal Court': 'SMPDB0001_CT04', 
@@ -189,7 +189,7 @@ LOCATION_TO_COURT_ID = {
     'Diamond Municipal Court': 'SMPDB0001_CT40', 'Granby Municipal Court': 'SMPDB0001_CT40', 'Seneca Municipal Court': 'SMPDB0001_CT40', 
     'Neosho Municipal Court': 'SMPDB0001_CT40', 'Fairview Municipal': 'SMPDB0001_CT40', 'Newton': 'SMPDB0001_CT40', 
     'Hopkins Municipal': 'SMPDB0001_CT04', 'Pickering Municipal': 'SMPDB0001_CT04', 'Skidmore Municipal': 'SMPDB0001_CT04', 
-    'Maryville Municipal Court': 'SMPDB0001_CT04', 'Burlington Junction Municipal': 'SMPDB0001_CT04', 
+    'Maryville Municipal Court': 'SMPDB0001_CT04', 'Maryville Municipal': 'SMPDB0001_CT04', 'City of Tarkio': 'SMPDB0001_CT04', 'Burlington Junction Municipal': 'SMPDB0001_CT04', 
     'Clearmont Municipal': 'SMPDB0001_CT04', 'Clyde Municipal': 'SMPDB0001_CT04', 'Conception Junction Municipal': 'SMPDB0001_CT04', 
     'Conception Municipal': 'SMPDB0001_CT04', 'Elmo Municipal': 'SMPDB0001_CT04', 'Graham Municipal': 'SMPDB0001_CT04', 
     'Guilford Municipal': 'SMPDB0001_CT04', 'Parnell Municipal': 'SMPDB0001_CT04', 'Quitman Municipal': 'SMPDB0001_CT04', 
@@ -204,7 +204,7 @@ LOCATION_TO_COURT_ID = {
     'St James Municipal': 'SMPDB0005_CT25', 'Doolittle Municipal': 'SMPDB0005_CT25', 'Rolla Municipal Court': 'SMPDB0005_CT25', 
     'Phelps Circuit': 'SMPDB0005_CT25', 'Louisiana Municipal Court': 'SMPDB0005_CT45', 'Eolia Municipal': 'SMPDB0005_CT45', 
     'Clarksville Municipal': 'SMPDB0005_CT45', 'Frankford Municipal': 'SMPDB0005_CT45', 'Bowling Green Municipal': 'SMPDB0005_CT45', 
-    'Dearborn Municipal': 'SMPDB0001_CT06', 'Platte City Municipal': 'SMPDB0001_CT06', 'Weston Municipal Court': 'SMPDB0001_CT06', 
+    'Dearborn Municipal': 'SMPDB0001_CT06', 'Platte City Municipal': 'SMPDB0001_CT06', 'Weston Municipal Court': 'SMPDB0001_CT06', 'Weston Municipal': 'SMPDB0001_CT06',
     'Tracy Municipal Court': 'SMPDB0001_CT06', 'Ferrelview Municipal': 'SMPDB0001_CT06', 'Lake Waukomis Municipal': 'SMPDB0001_CT06', 
     'Camden Point Municipal': 'SMPDB0001_CT06', 'Edgerton Municipal': 'SMPDB0001_CT06', 'Houston Lake Municipal': 'SMPDB0001_CT06', 
     'Northmoor Muni': 'SMPDB0001_CT06', 'Northmoor Municipal': 'SMPDB0001_CT06', 'Pleasant Hope Municipal': 'SMPDB0005_CT30', 
@@ -281,7 +281,7 @@ LOCATION_TO_COURT_ID = {
     'Carter': 'SMPDB0005_CT37', 'Cass': 'CT17', 'Cedar': 'SMPDB0004_CT28', 'Chariton': 'SMPDB0001_CT09', 'Christian': 'CT38', 'Clark': 'SMPDB0004_CT01',
     'Clay': 'SMPDB0001_CT07', 'Clinton': 'SMPDB0005_CT43', 'Cole': 'SMPDB0004_CT19', 'Cooper': 'CT18', 'Crawford': 'SMPDB0005_CT42', 'Dade': 'SMPDB0004_CT28',
     'Dallas': 'SMPDB0005_CT30', 'Daviess': 'SMPDB0005_CT43', 'DeKalb': 'SMPDB0005_CT43', 'Dent': 'SMPDB0005_CT42', 'Douglas': 'SMPDB0005_CT44', 'Dunklin': 'SMPDB0001_CT35',
-    'Franklin': 'SMPDB0004_CT20', 'Gasconade': 'SMPDB0004_CT20', 'Gentry': 'SMPDB0001_CT04', 'Greene': 'CT31', 'Grundy': 'SMPDB0001_CT03', 'Harrison': 'SMPDB0001_CT03',
+    'Franklin': 'SMPDB0004_CT20', 'Gasconade': 'SMPDB0004_CT20', 'Gentry': 'SMPDB0001_CT04', 'Greene': 'CT31', 'Grundy': 'SMPDB0001_CT03', 'Harrison': 'SMPDB0001_CT03', 'Harrison County Circuit Court': 'SMPDB0001_CT03',
     'Henry': 'SMPDB0005_CT27', 'Hickory': 'SMPDB0005_CT30', 'Holt': 'SMPDB0001_CT04', 'Howard': 'SMPDB0001_CT14', 'Howell': 'SMPDB0005_CT37', 'Iron': 'SMPDB0005_CT42',
     'Jackson': 'CT16', 'Jasper': 'SMPDB0001_CT29', 'Jasper County - Joplin': 'SMPDB0001_CT29', 'Jasper County - Carthage': 'SMPDB0001_CT29', 'Jefferson': 'CT23', 'Johnson': 'CT17', 'Knox': 'SMPDB0004_CT02', 
     'Laclede': 'SMPDB0004_CT26', 'Lafayette': 'SMPDB0001_CT15', 'Lewis': 'SMPDB0004_CT02', 'Lincoln': 'SMPDB0005_CT45', 'Linn': 'SMPDB0001_CT09', 'Livingston': 'SMPDB0005_CT43', 
@@ -293,5 +293,6 @@ LOCATION_TO_COURT_ID = {
     'Carroll Circuit Division': 'CT08', 'Reynolds': 'SMPDB0005_CT42', 'Ripley': 'SMPDB0004_CT36', 'Saline': 'SMPDB0001_CT15', 'Schuyler': 'SMPDB0004_CT01', 'Scotland': 'SMPDB0004_CT01', 'Scott': 'SMPDB0005_CT33',
     'Shannon': 'SMPDB0005_CT37', 'Shelby': 'SMPDB0004_CT41', 'St. Charles': 'CT11', 'St. Clair': 'SMPDB0005_CT27', 'St. Francois': 'SMPDB0005_CT24', 'St. Louis County': 'CT21',
     'Ste. Genevieve': 'SMPDB0005_CT24', 'Stoddard': 'SMPDB0001_CT35', 'Sulivan': 'SMPDB0001_CT09', 'Taney': 'CT46', 'Texas': 'SMPDB0005_CT25', 'The City of St. Louis': 'CT22',
-    'Vernon': 'SMPDB0004_CT28', 'Warren': 'CT12', 'Washington': 'SMPDB0005_CT24', 'Wayne': 'SMPDB0005_CT42', 'Webster': 'SMPDB0005_CT30', 'Worth': 'SMPDB0001_CT04', 'Wright': 'SMPDB0005_CT44'
+    'Vernon': 'SMPDB0004_CT28', 'Warren': 'CT12', 'Washington': 'SMPDB0005_CT24', 'Wayne': 'SMPDB0005_CT42', 'Webster': 'SMPDB0005_CT30', 'Worth': 'SMPDB0001_CT04', 'Wright': 'SMPDB0005_CT44',
+    'SUPREME COURT OF MISSOURI': 'OSCDB0024_SUP', 'EASTERN DISTRICT CT OF APPEALS': 'SMPDB0005_EAP', 'SOUTHERN DISTRICT CT OF APPEAL': 'SMPDB0001_SAP', 'WESTERN DISTRICT CT OF APPEALS': 'SMPDB0001_WAP'
 }

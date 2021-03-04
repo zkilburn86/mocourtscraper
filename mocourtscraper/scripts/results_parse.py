@@ -25,10 +25,10 @@ def get_results(soup):
     
     return df
 
-def get_case_numbers(soup):
+def get_case_numbers(soup, court_id):
     df = build_frame(soup)
     df = add_results_to_frame(soup, df)
-    df = post_process(df)
+    df = post_process(df, court_id)
 
     results_output = []
     case_to_url = pd.Series(df.Case_URL.values,index=df.Case_Number).to_dict()
@@ -97,12 +97,12 @@ def build_row(row, headers):
         indexer += 1
     return result
 
-def post_process(df):
-    case_to_loc = pd.Series(df.Location.values,index=df.Case_Number).to_dict()
+def post_process(df, court_id):
+    case_numbers = df['Case_Number'].to_list()
     case_urls = []
-    for case_number in case_to_loc.keys():
+    for case_number in case_numbers:
         case_urls.append(
-            case_search_spider_helper.build_case_url(case_number, case_to_loc[case_number])
+            case_search_spider_helper.build_case_url(case_number, court_id)
         )
     df['Case_URL'] = case_urls
     return df

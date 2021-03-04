@@ -32,12 +32,15 @@ class CaseSearchSpider(scrapy.Spider):
 
     url_map = {}
 
+    court_id = None
+
     def __init__(self, **kwargs):
         for arg in kwargs.keys():
             self.params[arg] = kwargs.get(arg)
         self.start_urls = [
             case_search_spider_helper.build_url(self.params)
         ]
+        self.court_id = search_options.COURT_IDS.get(self.params['court_description'])
         super(CaseSearchSpider, self).__init__(**kwargs)
 
     def start_requests(self):
@@ -53,7 +56,7 @@ class CaseSearchSpider(scrapy.Spider):
             next_result = case_search_spider_helper.get_next_result(result_counts)
             last_page = case_search_spider_helper.is_last_page(result_counts)
 
-            self.results_output.extend(get_case_numbers(soup))
+            self.results_output.extend(get_case_numbers(soup, self.court_id))
 
             if not last_page:
                 url = case_search_spider_helper.build_url(self.params) + '&inputVO.startingRecord=' + str(next_result)

@@ -28,8 +28,8 @@ def is_last_page(result_counts):
 def get_next_result(result_counts):
     return result_counts[1] + 1
 
-def build_case_url(case_number, location):
-    court_param = 'inputVO.courtId=' + navigation.LOCATION_TO_COURT_ID[location]
+def build_case_url(case_number, court_id):
+    court_param = 'inputVO.courtId=' + court_id
     case_param = 'inputVO.caseNumber=' + case_number
     url = navigation.CASE_URL + navigation.CASE_PATHS[0] + '?' + case_param + '&' + court_param
     return url
