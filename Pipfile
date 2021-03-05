@@ -12,6 +12,8 @@ scrapy = "*"
 bs4 = "*"
 scraperapi-sdk = "*"
 shub = "*"
+scrapinghub = "*"
+msgpack-python = "*"
 
 [dev-packages]
 pylint = "*"

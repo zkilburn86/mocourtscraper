@@ -7,11 +7,8 @@ scrapy crawl cases_search -O new_cases_search.json \
 -a case_type=Criminal
 
 curl -u $shub_key: https://app.scrapinghub.com/api/run.json -d project=503874 -d spider=cases_search \
--d "court_description=1st Judicial Circuit (Clark, Schuyler & Scotland Counties)" \
--d start_date=01/01/2020 \
+-d court_id=SMPDB0004_CT01 \
+-d start_date=02/05/2020 \
 -d case_type=Criminal | json_pp
 
-curl -u $shub_key: https://app.scrapinghub.com/api/jobs/list.json \
--d project=503874 \
--d spider=cases_search \
--d state=running  json_pp
+curl -u $shub_key: https://app.scrapinghub.com/api/jobs/list.json?project=503874&spider=cases_search&state=running | json_pp
